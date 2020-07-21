@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
 {% for number in list_of_numbers %}
 <p>{{ number }}</p>
 {% endfor %}
@@ -17,35 +18,42 @@
     leave on other business, welcomed a fourteenth to fill into their party.
 </p>
 
+{% for member in company %}
+
+
 <div class="row featurette">
+
+    {% if loop.index % 2 != 0 %}
     <div class="col-md-7">
-        <h3>Thorin Oakenshield</h3>
+        <h3>{{ loop.index }}. {{ member.name }}</h3>
         <p style="width: 60%;">
-            Thorin II, also called the Oakenshield, King under the Mountain or the Mountain King,[1] was the son of
-            Thráin II, the older brother of Frerin and Dís, the grandson of King Thrór and the uncle of Fíli and Kíli.
-            Thorin was best known for his deeds as leader of a company that infiltrated the lost Kingdom under the
-            Mountain to take it back from Smaug and for leading an alliance of Men, Dwarves, and Elves in the Battle of
-            the Five Armies.
+            {{ member.description }}
         </p>
     </div>
 
     <div class="col-md-5">
-        <img src="https://upload.wikimedia.org/wikipedia/en/e/ed/Thorin%2C_from_the_Hobbit.jpg">
+        <img class="featurette-image img-responsive" src="{{ member.image_source }}">
     </div>
-</div>
 
-<div class="row featurette">
+    {% else %}
     <div class="col-md-5">
-        <img src="https://mcdn.wallpapersafari.com/medium/58/99/1itch6.jpg">
+        <img class="featurette-image img-responsive" src="{{ member.image_source }}">
     </div>
-    <div class="col-md-7">
-        <h3>{{ page_title }}</h3>
 
+    <div class="col-md-7">
+        <h3>{{ loop.index }}. {{ member.name }}</h3>
         <p style="width: 60%;">
-            Fíli and Kíli were nephews of Thorin, who was the elder brother of their mother Dís. They were also nephews
-            of Frerin, grandsons of Thráin II, and great-grandsons of Thrór. Fíli's most distinguishing feature was his
-            long nose, the longest of any of the Dwarves in Thorin's company
+            {{ member.description }}
         </p>
     </div>
+
+
+    {% endif %}
 </div>
+
+{% if loop.index != 13 %}
+<hr class="featurette-divider">
+
+{% endif %}
+{% endfor %}
 {% endblock %}
